@@ -141,7 +141,7 @@ function inferAnswerListFromText(content, question, forceAnswer) {
     return forceAnswer ? [TRUE_TEXT] : [];
   }
 
-  const answerLine = text.match(/(?:answer|result|ans)\s*[:：]\s*(.+)$/i);
+  const answerLine = text.match(/(?:answer|result|ans)\s*[:\uFF1A]\s*(.+)$/i);
   if (answerLine && answerLine[1]) {
     return [cleanText(answerLine[1]).slice(0, 200)];
   }

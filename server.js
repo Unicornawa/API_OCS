@@ -39,6 +39,19 @@ function getRecordAnswer(record) {
   return formatAnswerForOcs(record.answerList || record.answer);
 }
 
+function buildFallbackResult(question, error) {
+  const normalized = normalizeAiResult('', question, {
+    forceAnswer: true,
+  });
+  return {
+    answer: formatAnswerForOcs(normalized.answerList),
+    answerList: normalized.answerList,
+    explanation: error ? `Fallback after AI API error: ${error.message || String(error)}` : 'Fallback answer',
+    confidence: 0.01,
+    needsReview: true,
+  };
+}
+
 async function handleAnswer(req, res) {
   const data = await getRequestData(req);
   if (!checkAccess(req, data)) {
@@ -113,11 +126,52 @@ async function handleAnswer(req, res) {
       needsReview: normalized.needsReview,
     });
   } catch (error) {
-    sendJson(res, 500, {
-      code: 0,
-      msg: error.message || String(error),
-      question: question.title,
+    if (!config.forceAnswer) {
+      sendJson(res, 500, {
+        code: 0,
+        msg: error.message || String(error),
+        question: question.title,
+        key,
+      });
+      return;
+    }
+
+    const fallback = buildFallbackResult(question, error);
+    const record = {
       key,
+      question,
+      answer: fallback.answer,
+      answerList: fallback.answerList,
+      answerText: fallback.answerList,
+      type: question.type || '',
+      explanation: fallback.explanation,
+      confidence: fallback.confidence,
+      needsReview: true,
+      status: 'fallback',
+      model: config.model,
+      raw: config.saveAiResults ? { error: error.message || String(error) } : undefined,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      hits: 0,
+    };
+
+    if (config.cacheEnabled && fallback.answer) {
+      cache.set(key, record);
+    }
+
+    sendJson(res, 200, {
+      code: 1,
+      question: question.title,
+      answer: fallback.answer,
+      answerList: fallback.answerList,
+      answerText: fallback.answerList,
+      explanation: fallback.explanation,
+      confidence: fallback.confidence,
+      cached: false,
+      key,
+      status: 'fallback',
+      needsReview: true,
+      msg: error.message || String(error),
     });
   }
 }

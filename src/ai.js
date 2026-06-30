@@ -103,13 +103,17 @@ async function askAi(config, question) {
     ],
   };
   const response = await postJson(endpoint, headers, payload, config.timeoutMs);
-  const content = response.json
-    && response.json.choices
-    && response.json.choices[0]
-    && response.json.choices[0].message
-    && response.json.choices[0].message.content;
-  if (!content) {
-    throw new Error(`AI API response missing choices[0].message.content: ${response.text.slice(0, 500)}`);
+  const choice = response.json && response.json.choices && response.json.choices[0];
+  const message = choice && choice.message;
+  const content = [
+    message && message.content,
+    message && message.reasoning_content,
+    message && message.reasoning,
+    choice && choice.text,
+  ].map((value) => String(value || '').trim()).find(Boolean) || '';
+
+  if (!choice) {
+    throw new Error(`AI API response missing choices[0]: ${response.text.slice(0, 500)}`);
   }
   return {
     content,
