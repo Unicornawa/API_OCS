@@ -1,0 +1,15 @@
+{
+  "name": "ocs-ai-tiku-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local OpenAI-compatible AI answer adapter for OCS AnswererWrapper.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "config": "node scripts/generate-config.js",
+    "test": "node scripts/test-request.js"
+  },
+  "engines": {
+    "node": ">=16.16.0"
+  }
+}
