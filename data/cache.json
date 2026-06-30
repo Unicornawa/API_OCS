@@ -1,4 +1,850 @@
 {
   "version": 1,
-  "items": {}
+  "items": {
+    "391324cb7095088ca3f87419": {
+      "key": "391324cb7095088ca3f87419",
+      "question": {
+        "title": "CZY3-3-1*有10g的氢气（摩尔质量为2g/mol），装在0.12m³的容器内，当容器内的压强为100kPa（kPa为千帕）时，气体普适常量http://p.ananas.chaoxing.com/star3/origin/8fccdeec53fb3d08d364b4071aa3926b.png,玻尔兹曼常量http://p.ananas.chaoxing.com/star3/origin/770b80c59b0bcf69ee594e833dab3f4d.png，则（）",
+        "type": "multiple",
+        "options": [
+          {
+            "label": "A",
+            "text": "容器内氢气的温度为289K"
+          },
+          {
+            "label": "B",
+            "text": "氢分子的平均平动动能是http://p.ananas.chaoxing.com/star3/origin/80947607187088bfd840438ebc1d91c9.png"
+          },
+          {
+            "label": "C",
+            "text": "容器内氢气的内能为http://p.ananas.chaoxing.com/star3/origin/0588937bebbcf9c2fdedf22101946aff.png"
+          }
+        ],
+        "rawOptions": "容器内氢气的温度为289K\n氢分子的平均平动动能是http://p.ananas.chaoxing.com/star3/origin/80947607187088bfd840438ebc1d91c9.png\n容器内氢气的内能为http://p.ananas.chaoxing.com/star3/origin/0588937bebbcf9c2fdedf22101946aff.png"
+      },
+      "answer": "A#B#C",
+      "answerList": [
+        "A",
+        "B",
+        "C"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C"
+      ],
+      "type": "multiple",
+      "explanation": "我们被问到：\"CZY3-3-1*有10g的氢气（摩尔质量为2g/mol），装在0.12m³的容器内，当容器内的压强为100kPa（kPa为千帕）时，气体普适常量http://p.ananas.chaoxing.com/star3/origin/8fccdeec53fb3d08d364b4071aa3926b.png,玻尔兹曼常量http://p.ananas.chaoxing.com/star3/origin/770b80c59b0bcf69ee594e833dab3f4d.png，则（）\" 选项没有完整显示，但根据常见物理题，可能计算氢气温度、平均平动动能、内能等。题目给出质量10g，摩尔质量2g/mol，所以物质的量 n = 10/2 = 5 mol。体积 V = 0.12 m³，压强 p = 100 kPa = 100,000 Pa。理想气体状态方程 pV = nRT，可求温度 T = pV/(nR)。R 是普适气体常量，通常 8.31 J/(mol·K)。计算 T = (100,000 Pa * 0.12 m³) / (5 mol * 8.31 J/(mol·K)) = 12,",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "24ce083c-1b7a-47b2-bf3d-87a9e0f22197",
+        "object": "chat.completion",
+        "created": 1782801067,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "我们被问到：\"CZY3-3-1*有10g的氢气（摩尔质量为2g/mol），装在0.12m³的容器内，当容器内的压强为100kPa（kPa为千帕）时，气体普适常量http://p.ananas.chaoxing.com/star3/origin/8fccdeec53fb3d08d364b4071aa3926b.png,玻尔兹曼常量http://p.ananas.chaoxing.com/star3/origin/770b80c59b0bcf69ee594e833dab3f4d.png，则（）\"\n\n选项没有完整显示，但根据常见物理题，可能计算氢气温度、平均平动动能、内能等。题目给出质量10g，摩尔质量2g/mol，所以物质的量 n = 10/2 = 5 mol。体积 V = 0.12 m³，压强 p = 100 kPa = 100,000 Pa。理想气体状态方程 pV = nRT，可求温度 T = pV/(nR)。R 是普适气体常量，通常 8.31 J/(mol·K)。计算 T = (100,000 Pa * 0.12 m³) / (5 mol * 8.31 J/(mol·K)) = 12,000 / (41.55) ≈ 288.8 K，所以约 289 K，A可能正确。\n\n选项B：氢分子的平均平动动能。对于双原子分子氢气，在常温下，平均平动动能总是 (3/2)kT，与自由度有关，平动自由度3，所以平均平动动能 = (3/2)kT，k是玻尔兹曼常量。计算 T≈289 K，k=1.38e-23，得平均平动动能 ≈ 1.5 * 1.38e-23 * 289 ≈ 5.98e-21 J。选项图片看不到，可能数值匹配吗？常见题中可能给出某个数值。\n\n选项C：容器内氢气的内能。对于理想气体，内能 U = n * (i/2)RT，其中 i 是自由度。常温下氢气（双原子）自由度 i=5（3平动+2转动，振动未激发），所以 U = (5/2)nRT = (5/2) * 5 * 8.31 * 289 = 2.5 * 5 * 8.31 * 289 = 12.5 * 2401.59? 计算：5*8.31=41.55, 41.55*289≈12008, (5/2)*12008≈30020 J。若选项C给出内能值，可能是这个吗？或者可能考虑振动？通常不考虑振动。另外，也可以直接用 pV：U = (5/2) pV = 2.5 * 100,000 * 0.12 = 2.5 * 12,000 = 30,000 J。所以内能约 30 kJ。可能选项C图片是某个值。\n\n由于选项图片不可见，我们需要推断。题目是多项选择题，可能要求选择正确的选项。从计算可知T≈289 K，A正确。B的平均平"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 441,
+          "completion_tokens": 700,
+          "total_tokens": 1141,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 57
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:31:19.094Z",
+      "updatedAt": "2026-06-30T06:31:19.094Z",
+      "hits": 0
+    },
+    "f1f5073e6174aa66fba5865a": {
+      "key": "f1f5073e6174aa66fba5865a",
+      "question": {
+        "title": "CZY3-1-5*有2mol氢气，在温度为27℃时，它的分子（）。",
+        "type": "multiple",
+        "options": [
+          {
+            "label": "A",
+            "text": "平动动能为7479J"
+          },
+          {
+            "label": "B",
+            "text": "转动动能为4986J"
+          },
+          {
+            "label": "C",
+            "text": "总动能为7479J"
+          }
+        ],
+        "rawOptions": "平动动能为7479J\n转动动能为4986J\n总动能为7479J"
+      },
+      "answer": "A#B",
+      "answerList": [
+        "A",
+        "B"
+      ],
+      "answerText": [
+        "A",
+        "B"
+      ],
+      "type": "multiple",
+      "explanation": "{ \"answer\": [\"A\", \"B\"], \"answerText\": \"A, B\", \"type\": \"multiple\", \"confidence\": 1.0, \"explanation\": \"氢气为双原子分子，常温下不考虑振动自由度。2mol氢气在27℃（300",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "c2c00bf8-1f16-433b-be01-32c01d724460",
+        "object": "chat.completion",
+        "created": 1782801083,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": [\"A\", \"B\"],\n  \"answerText\": \"A, B\",\n  \"type\": \"multiple\",\n  \"confidence\": 1.0,\n  \"explanation\": \"氢气为双原子分子，常温下不考虑振动自由度。2mol氢气在27℃（300",
+              "reasoning_content": "We are asked: \"CZY3-1-5*有2mol氢气，在温度为27℃时，它的分子（）。\" Options: A. 平动动能为7479J; B. 转动动能为4986J; C. 总动能为7479J. This is a multiple-choice question, likely multiple correct? The question type says \"multiple\". So we need to select all correct statements. Hydrogen gas (H2) is diatomic. At temperature T = 27°C = 300 K. For 2 moles. We need to compute translational kinetic energy, rotational kinetic energy, and total kinetic energy.\n\nFor an ideal diatomic gas, degrees of freedom: translational 3, rotational 2 (at ordinary temperatures, vibrational not excited). So average energy per molecule: translational = (3/2)kT, rotational = (2/2)kT = kT, total kinetic (translational + rotational) = (5/2)kT. For n moles, total translational kinetic energy = n * (3/2)RT. Total rotational kinetic energy = n * (2/2)RT = nRT. Total kinetic energy = n * (5/2)RT.\n\nGiven n = 2 mol, R = 8.314 J/(mol·K), T = 300 K.\n\nCompute:\nTranslational: E_trans = 2 * (3/2) * R * 300 = 3 * R * 300 = 900R. 900 * 8.314 = 7482.6 J. ≈ 7483 J. Option A says 7479J, which is close but might be due to using R=8.31? Let's check: 900*8.31 = 7479 J exactly. So A is likely correct if they used R=8.31.\n\nRotational: E_rot = n * 1 * RT = 2 * R * 300 = 600R. 600*8.314 = 4988.4 J; 600*8.31 = 4986 J. Option B says 4986 J. So B is correct with R=8.31.\n\nTotal kinetic energy = E_trans + E_rot = 900R + 600R = 1500R. 1500*8.31 = 12465 J. Option C says 总动能为7479J, which is just the translational. So C is incorrect.\n\nThus A and B are correct. The question type is \"multiple\", so answer should be [\"A\",\"B\"].\n\nConfidence is high, needsReview false. Explanation: For diatomic hydrogen at 27°C (300K), translational kinetic energy of 2 mol = 3RT = 3×8.31×300 ≈ 7479 J, rotational kinetic energy = 2RT = 2×8.31×300 ≈ 4986 J, total = 5RT ≈ 12465 J. So A and B are right, C is wrong.\n\nOutput JSON."
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 261,
+          "completion_tokens": 700,
+          "total_tokens": 961,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 636
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 5
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:31:33.890Z",
+      "updatedAt": "2026-06-30T06:31:33.890Z",
+      "hits": 0
+    },
+    "745b2a2d543b05c29351f66f": {
+      "key": "745b2a2d543b05c29351f66f",
+      "question": {
+        "title": "CZY3-1-1*质量为m，摩尔质量为M，分子数密度为n的理想气体，处于平衡态时，气体的温度为T，压强为p，体积为V，R是摩尔气体常量，则状态方程为（）；若其中k称为玻耳兹曼常量，则状态方程的另一形式为（）。",
+        "type": "multiple",
+        "options": [
+          {
+            "label": "A",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/fcdf71e5c4f340756f911c6247cd56e2.png"
+          },
+          {
+            "label": "B",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/79a69e35f931f727d4a4134505ecb8b3.png"
+          },
+          {
+            "label": "C",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/fbf2812e5e40da48dcf7ccde5b730235.png"
+          },
+          {
+            "label": "D",
+            "text": "p=mkT"
+          }
+        ],
+        "rawOptions": "http://p.ananas.chaoxing.com/star3/origin/fcdf71e5c4f340756f911c6247cd56e2.png\nhttp://p.ananas.chaoxing.com/star3/origin/79a69e35f931f727d4a4134505ecb8b3.png\nhttp://p.ananas.chaoxing.com/star3/origin/fbf2812e5e40da48dcf7ccde5b730235.png\np=mkT"
+      },
+      "answer": "A#B#C#D",
+      "answerList": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "type": "multiple",
+      "explanation": "We are asked to answer a multiple-select question (since type is \"multiple\"). The question is about the ideal gas state equation and its alternative form. The question title: \"CZY3-1-1*质量为m，摩尔质量为M，分子数密度为n的理想气体，处于平衡态时，气体的温度为T，压强为p，体积为V，R是摩尔气体常量，则状态方程为（）；若其中k称为玻耳兹曼常量，则状态方程的另一形式为（）。\" This translates to: \"For an ideal gas with mass m, molar mass M, number density n, in equilibrium, temperature T, pressure p, volume V, R is the molar gas constant, then the equation of state is (); if k is called Bolt",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "b69b8424-5d2b-4040-b89c-f915e8fc49e8",
+        "object": "chat.completion",
+        "created": 1782801099,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "We are asked to answer a multiple-select question (since type is \"multiple\"). The question is about the ideal gas state equation and its alternative form. The question title: \"CZY3-1-1*质量为m，摩尔质量为M，分子数密度为n的理想气体，处于平衡态时，气体的温度为T，压强为p，体积为V，R是摩尔气体常量，则状态方程为（）；若其中k称为玻耳兹曼常量，则状态方程的另一形式为（）。\" This translates to: \"For an ideal gas with mass m, molar mass M, number density n, in equilibrium, temperature T, pressure p, volume V, R is the molar gas constant, then the equation of state is (); if k is called Boltzmann constant, then the other form of the equation of state is ().\"\n\nOptions are given as image links: A, B, C, D. Without seeing the images, I have to infer the likely equations. The ideal gas equation is pV = nRT (where n is number of moles). Alternatively, pV = (m/M) RT. Also p = n kT, where n is number density (number of molecules per unit volume). The question: first blank: \"状态方程为（）\", likely the standard form. Then \"若其中k称为玻耳兹曼常量，则状态方程的另一形式为（）\", so the second form involving Boltzmann constant. Common answer: first: pV = (m/M) RT, or pV = νRT. Second: p = nkT. The options might be images. Without seeing, I need to deduce. The options are letters A,B,C,D. It's a multiple-select question, so possibly two correct options. I need to output labels array. But wait: the question has two blanks, so likely it's a fill-in with multiple parts? But type is \"multiple\", so likely we select the correct options from A,B,C,D. I'll assume the answers are A and something else. Could be A for first, D for second, etc. Since I can't see, I'll try to reason: commonly, state equation: pV = (m/M) R T. And the other form: p = n k T. Looking at typical Chinese physics textbooks: the ideal gas state equation: pV = (m/M) RT, and p = nkT. So the options likely show these formulas. Without seeing the images, but the links are from Chaoxing (a Chinese online learning platform), and filenames: one is \"...fcdf71e5c4f340756f911c6247cd56e2.png\", another \"...79a69e35f931f727d4a4134505ecb8b3.png\", \"...fbf2812e5e40da48dcf7ccde5b730235.png\", and D is \"p=mkT\". Wait, option D is given as \"p=mkT\"? The option D text: \"D. p=mkT\"? In the user message, after options, they wrote: \"Options: A. http://p.ananas.chaoxing.com/star3/origin/fcdf71e5c4f340756f911c6247cd56e2.png B. http://p.ananas.chaoxing.com/star3/origin/79a"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 402,
+          "completion_tokens": 700,
+          "total_tokens": 1102,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 18
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:31:51.690Z",
+      "updatedAt": "2026-06-30T06:31:51.690Z",
+      "hits": 0
+    },
+    "f48c202659e18e955484e472": {
+      "key": "f48c202659e18e955484e472",
+      "question": {
+        "title": "CZY3-1-11*较重分子的方均根速率要比较轻分子的方均根速率小,当两种质量不同的气体都被一种多孔物质吸附时,较轻的气体将比较重的气体更易脱离多孔物质。在植物叶片内,光合作用、呼吸作用以及水汽蒸腾使叶片组织内充满了二氧化碳、氧气和水汽。当叶片内的二氧化碳、氧气和水汽向外扩散时,（）。",
+        "type": "multiple",
+        "options": [
+          {
+            "label": "A",
+            "text": "分子量较小的氧气和水汽的扩散速率较大,而分子量较大的二氧化碳的扩散速率较小,"
+          },
+          {
+            "label": "B",
+            "text": "结果使叶片内的氧气和水汽浓度较大,"
+          },
+          {
+            "label": "C",
+            "text": "这种效应有利于叶片光合细胞对二氧化碳的吸收和利用,从面提高光合效率。"
+          }
+        ],
+        "rawOptions": "分子量较小的氧气和水汽的扩散速率较大,而分子量较大的二氧化碳的扩散速率较小,\n结果使叶片内的氧气和水汽浓度较大,\n这种效应有利于叶片光合细胞对二氧化碳的吸收和利用,从面提高光合效率。"
+      },
+      "answer": "A#B#C",
+      "answerList": [
+        "A",
+        "B",
+        "C"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C"
+      ],
+      "type": "multiple",
+      "explanation": "我们被问到：\"CZY3-1-11*较重分子的方均根速率要比较轻分子的方均根速率小,当两种质量不同的气体都被一种多孔物质吸附时,较轻的气体将比较重的气体更易脱离多孔物质。在植物叶片内,光合作用、呼吸作用以及水汽蒸腾使叶片组织内充满了二氧化碳、氧气和水汽。当叶片内的二氧化碳、氧气和水汽向外扩散时,（）。\" 选项： A. 分子量较小的氧气和水汽的扩散速率较大,而分子量较大的二氧化碳的扩散速率较小, B. 结果使叶片内的氧气和水汽浓度较大, C. 这种效应有利于叶片光合细胞对二氧化碳的吸收和利用,从面提高光合效率。 这是一个多选题。我们需要根据问题陈述选择正确的选项。问题陈述：较重分子均方根速率小，较轻气体更易脱离多孔物质。在叶片内，有CO2、O2和水汽。当它们向外扩散时，较轻的分子扩散速率较大。分子量：CO2是44，O2是32，水汽H2O是18。所以O2和水汽比CO2轻。因此，它们扩散速率较大。所以A对。结果，由于较轻的气体扩散更快，叶片内较重气体（CO2）浓度相对较大吗？实际上，如果氧气和水汽扩散出去更快，那么它们浓度会降低，而二氧化碳扩散慢，浓度相对较高？选项B说\"结果使叶片内的氧气和水",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "42d17ef3-8095-437a-a5d9-b51e3c82e445",
+        "object": "chat.completion",
+        "created": 1782801141,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "我们被问到：\"CZY3-1-11*较重分子的方均根速率要比较轻分子的方均根速率小,当两种质量不同的气体都被一种多孔物质吸附时,较轻的气体将比较重的气体更易脱离多孔物质。在植物叶片内,光合作用、呼吸作用以及水汽蒸腾使叶片组织内充满了二氧化碳、氧气和水汽。当叶片内的二氧化碳、氧气和水汽向外扩散时,（）。\"\n\n选项：\nA. 分子量较小的氧气和水汽的扩散速率较大,而分子量较大的二氧化碳的扩散速率较小,\nB. 结果使叶片内的氧气和水汽浓度较大,\nC. 这种效应有利于叶片光合细胞对二氧化碳的吸收和利用,从面提高光合效率。\n\n这是一个多选题。我们需要根据问题陈述选择正确的选项。问题陈述：较重分子均方根速率小，较轻气体更易脱离多孔物质。在叶片内，有CO2、O2和水汽。当它们向外扩散时，较轻的分子扩散速率较大。分子量：CO2是44，O2是32，水汽H2O是18。所以O2和水汽比CO2轻。因此，它们扩散速率较大。所以A对。结果，由于较轻的气体扩散更快，叶片内较重气体（CO2）浓度相对较大吗？实际上，如果氧气和水汽扩散出去更快，那么它们浓度会降低，而二氧化碳扩散慢，浓度相对较高？选项B说\"结果使叶片内的氧气和水汽浓度较大\"，这似乎相反。如果它们扩散速率大，向外扩散快，那么叶片内它们的浓度应该较小，而二氧化碳浓度较大。所以B可能是错误的。选项C说这种效应有利于叶片光合细胞对二氧化碳的吸收和利用，从而提高光合效率。因为二氧化碳扩散慢，留在叶片内浓度较高，有利于光合作用吸收CO2。可能C是正确的。但需要仔细分析：较轻的气体更易脱离多孔物质，这里说的是从多孔物质中脱离？但问题说\"当两种质量不同的气体都被一种多孔物质吸附时，较轻的气体将比较重的气体更易脱离多孔物质。\" 在叶片内，这些气体可能被叶片组织吸附？然后向外扩散。这里描述的是：光合、呼吸、蒸腾使叶片组织内充满了CO2、O2和水汽。当它们向外扩散时... 向外扩散是通过气孔等。扩散速率与分子量有关：格雷厄姆定律，扩散速率与分子量的平方根成反比。较轻分子扩散快。所以A正确。那么扩散结果，O2和水汽更容易扩散出去，叶片内它们的浓度会降低，而CO2扩散慢，叶片内CO2浓度可能相对升高？或者由于扩散出去快，叶片内O2和水汽浓度会变小。但选项B说\"结果使叶片内的氧气和水汽浓度较大\"，这可能是因为它们产生速率也快？但在扩散情境下，如果只考虑扩散，较轻的扩散出去更快，会导致叶片内较轻气体浓度降低。所以B可能不正确。C：这种效应有利于叶片光合细胞对二氧化碳的吸收和利用。因为CO2扩散慢，从叶片内向大气扩散慢，意味着叶片内CO2不易散失，而光合作用需要吸收CO2，从大气进入叶片？这里描述的是叶片内的气体向外扩散。如果CO2向外扩散慢，那么叶片内部CO"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 357,
+          "completion_tokens": 700,
+          "total_tokens": 1057,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 357
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:32:36.749Z",
+      "updatedAt": "2026-06-30T06:32:36.749Z",
+      "hits": 0
+    },
+    "2d571c1726dc6da5e4c281b4": {
+      "key": "2d571c1726dc6da5e4c281b4",
+      "question": {
+        "title": "CZY3-2-4*根据经典的能量按自由度均分原理，每个自由度的平均能量为（）。",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/b56a297bed31e2a472857395e80ee626.png"
+          },
+          {
+            "label": "B",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/96791eafe5b95956ac9ff0b0c8c1b2d6.png"
+          },
+          {
+            "label": "C",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/78e1b71da9f8efd4917c6e13da63caec.png"
+          },
+          {
+            "label": "D",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/61b38100119b36e09c74ca66122aae05.png"
+          }
+        ],
+        "rawOptions": "http://p.ananas.chaoxing.com/star3/origin/b56a297bed31e2a472857395e80ee626.png\nhttp://p.ananas.chaoxing.com/star3/origin/96791eafe5b95956ac9ff0b0c8c1b2d6.png\nhttp://p.ananas.chaoxing.com/star3/origin/78e1b71da9f8efd4917c6e13da63caec.png\nhttp://p.ananas.chaoxing.com/star3/origin/61b38100119b36e09c74ca66122aae05.png"
+      },
+      "answer": "A",
+      "answerList": [
+        "A"
+      ],
+      "answerText": [
+        "每个自由度的平均能量为(1/2)kT",
+        "假设图片A对应此公式"
+      ],
+      "type": "single",
+      "explanation": "根据经典能量均分原理，每个自由度的平均能量为(1/2)kT。但题目选项均为图片链接，无法直接读取内容，因此按常见选项顺序猜测A为正确选项。",
+      "confidence": 0.2,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "d6deef2f-3170-443d-be19-fd30b285b5d9",
+        "object": "chat.completion",
+        "created": 1782801161,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": [\"A\"],\n  \"answerText\": \"每个自由度的平均能量为(1/2)kT，假设图片A对应此公式\",\n  \"type\": \"single\",\n  \"confidence\": 0.2,\n  \"explanation\": \"根据经典能量均分原理，每个自由度的平均能量为(1/2)kT。但题目选项均为图片链接，无法直接读取内容，因此按常见选项顺序猜测A为正确选项。\",\n  \"needsReview\": true\n}",
+              "reasoning_content": "We are asked: \"CZY3-2-4*根据经典的能量按自由度均分原理，每个自由度的平均能量为（）。\" The question is in Chinese, meaning: \"According to the classical principle of equipartition of energy, the average energy per degree of freedom is ().\" The options are images linked, but we can infer from physics knowledge. The equipartition theorem states that each quadratic degree of freedom contributes (1/2)kT to the average energy. In many contexts, it's (1/2)kT per degree of freedom. So the answer is typically expressed as \\frac{1}{2}kT. So the correct option likely shows that formula. Since we can't see images, we have to deduce from typical representations. Options: A, B, C, D are images with URLs. The URLs might contain encoded text? They are like \"b56a297bed31e2a472857395e80ee626.png\" which is a hash, not human-readable. So we have to guess. The most common answer: each degree of freedom has average energy \\frac{1}{2}kT. In Chinese textbooks, it's often written as \\frac{1}{2}kT. So likely option A or something. But we need to output the label. Given that it's impossible to know which image corresponds, we must rely on typical multiple-choice answers. In many online exams, the answer might be known: According to energy equipartition, each degree of freedom's average energy is (1/2)kT. So we can output a guess: perhaps A? But we need to be honest: confidence low. We'll set confidence 0.2, needsReview true. But we must output a non-empty answer. Let's assume A. So answer: [\"A\"]. explanation: \"根据能量均分定理，每个自由度的平均能量为(1/2)kT。但由于选项为图片，无法直接确定对应标签，猜测为A。\" type: \"single\". So JSON.\n\nOutput JSON only."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 391,
+          "completion_tokens": 533,
+          "total_tokens": 924,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 423
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 391
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:32:51.716Z",
+      "updatedAt": "2026-06-30T06:32:51.716Z",
+      "hits": 0
+    },
+    "cf97785f8c055335a2461243": {
+      "key": "cf97785f8c055335a2461243",
+      "question": {
+        "title": "JBXZ02-10A*当液体与固体接触时，通常把接触角https://p.ananas.chaoxing.com/star3/origin/e5f7ce5258ae09fe520f058c2a70e02c.png作为液体是否润湿固体的界限;则()。",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "当https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png，称为液体润湿固体，如汞在洁净玻璃表面"
+          },
+          {
+            "label": "B",
+            "text": "当https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png，称为液体不润湿固体，如水在洁净玻璃表面"
+          },
+          {
+            "label": "C",
+            "text": "当https://p.ananas.chaoxing.com/star3/origin/3a5f1bb78c51dcea67407f5896136d99.png时，称为液体润湿固体，如水在蜡质的荷叶上面"
+          },
+          {
+            "label": "D",
+            "text": "当https://p.ananas.chaoxing.com/star3/origin/3a5f1bb78c51dcea67407f5896136d99.png时，称为液体润湿固体，如水在洁净的玻璃表面"
+          }
+        ],
+        "rawOptions": "当https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png，称为液体润湿固体，如汞在洁净玻璃表面\n当https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png，称为液体不润湿固体，如水在洁净玻璃表面\n当https://p.ananas.chaoxing.com/star3/origin/3a5f1bb78c51dcea67407f5896136d99.png时，称为液体润湿固体，如水在蜡质的荷叶上面\n当https://p.ananas.chaoxing.com/star3/origin/3a5f1bb78c51dcea67407f5896136d99.png时，称为液体润湿固体，如水在洁净的玻璃表面"
+      },
+      "answer": "A#B#C#D",
+      "answerList": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "type": "single",
+      "explanation": "We are asked to answer a single-choice question. The question is about contact angle and wetting. The text says: \"当液体与固体接触时，通常把接触角https://p.ananas.chaoxing.com/star3/origin/e5f7ce5258ae09fe520f058c2a70e02c.png作为液体是否润湿固体的界限;则()。\". The formula shows some image, likely it's a specific angle. Options A, B, C, D each have some image for an angle inequality. The images are likely: option A: \"https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png\" which probably shows an angle ",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "cbabf069-7dc1-4156-980b-f88a516e46dd",
+        "object": "chat.completion",
+        "created": 1782801189,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "We are asked to answer a single-choice question. The question is about contact angle and wetting. The text says: \"当液体与固体接触时，通常把接触角https://p.ananas.chaoxing.com/star3/origin/e5f7ce5258ae09fe520f058c2a70e02c.png作为液体是否润湿固体的界限;则()。\". The formula shows some image, likely it's a specific angle. Options A, B, C, D each have some image for an angle inequality. The images are likely: option A: \"https://p.ananas.chaoxing.com/star3/origin/84af5bed5524811bbe81e9ed731976eb.png\" which probably shows an angle condition. Option B same condition but different example. Option C: \"https://p.ananas.chaoxing.com/star3/origin/3a5f1bb78c51dcea67407f5896136d99.png\", option D same as C but different example. Based on typical knowledge: contact angle θ. Wetting occurs when θ < 90°, non-wetting when θ > 90°. So the question says \"通常把接触角...作为液体是否润湿固体的界限\", so likely the boundary is θ = 90°. So the correct statement should reflect that. Option A: 当...，称为液体润湿固体，如汞在洁净玻璃表面. Probably the image in A and B is same? They use same image URL \"84af5bed5524811bbe81e9ed731976eb.png\". That might show θ < 90°? Or θ > 90°? In typical textbook: mercury on glass has contact angle > 90°, so non-wetting. So A might say θ < 90° with mercury/glass? That would be wrong. Option B: same condition but says \"称为液体不润湿固体，如水在洁净玻璃表面\" – but water on glass wets, so wrong. Option C: image URL \"3a5f1bb78c51dcea67407f5896136d99.png\" - maybe θ > 90°? And says \"称为液体润湿固体，如水在蜡质的荷叶上面\" – water on waxy lotus leaf is non-wetting (θ > 90°), so that would be wrong. Option D: same image as C (θ > 90°?) and says \"称为液体润湿固体，如水在洁净的玻璃表面\" – water on glass wets (θ < 90°), so if the image shows θ > 90°, this is wrong. So none seems obviously correct unless the images represent something else. But the question states: \"通常把接触角[some formula]作为液体是否润湿固体的界限\", maybe the image e5f7ce... shows cosθ = 0? Or shows θ = 90°? We can't see images, but typical knowledge: the boundary is 90°. Then the options show inequalities. Which inequality correctly matches the wetting/non-wetting and example?\n\nLet's think: The question might be: \"当液体与固体接触时，通常把接触角θ=90°作为液体是否润湿固体的界限；则（ ）。\" Options likely fill: when θ<"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 489,
+          "completion_tokens": 700,
+          "total_tokens": 1189,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 105
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:33:21.482Z",
+      "updatedAt": "2026-06-30T06:33:21.482Z",
+      "hits": 0
+    },
+    "ba1f7b8fcb8fa2bf0b62dc41": {
+      "key": "ba1f7b8fcb8fa2bf0b62dc41",
+      "question": {
+        "title": "JBXZ02-11B*在水面下靠近水面处，有一个直径为1.0mm的球形气泡，若水面上的气压为100kPa，水的表面张力系数为0.073N/m，则气泡内的压强为()。",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "260Pa"
+          },
+          {
+            "label": "B",
+            "text": "130Pa"
+          },
+          {
+            "label": "C",
+            "text": "100260Pa"
+          },
+          {
+            "label": "D",
+            "text": "100130Pa"
+          }
+        ],
+        "rawOptions": "260Pa\n130Pa\n100260Pa\n100130Pa"
+      },
+      "answer": "A#B#C#D",
+      "answerList": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "type": "single",
+      "explanation": "We are asked: \"JBXZ02-11B*在水面下靠近水面处，有一个直径为1.0mm的球形气泡，若水面上的气压为100kPa，水的表面张力系数为0.073N/m，则气泡内的压强为()。\" Options: A. 260Pa, B. 130Pa, C. 100260Pa, D. 100130Pa. Interpretation: A spherical bubble of diameter 1.0mm is near the water surface. Atmospheric pressure above water is 100 kPa. Surface tension coefficient of water is 0.073 N/m. Find the pressure inside the bubble. We need to recall Laplace pressure for a bubble in liquid. However, note that this bubble is in water, near surface. For a gas bubble",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "64712259-fbcb-428c-aadd-d0a22c575b38",
+        "object": "chat.completion",
+        "created": 1782801206,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "We are asked: \"JBXZ02-11B*在水面下靠近水面处，有一个直径为1.0mm的球形气泡，若水面上的气压为100kPa，水的表面张力系数为0.073N/m，则气泡内的压强为()。\"\nOptions: A. 260Pa, B. 130Pa, C. 100260Pa, D. 100130Pa.\n\nInterpretation: A spherical bubble of diameter 1.0mm is near the water surface. Atmospheric pressure above water is 100 kPa. Surface tension coefficient of water is 0.073 N/m. Find the pressure inside the bubble.\n\nWe need to recall Laplace pressure for a bubble in liquid. However, note that this bubble is in water, near surface. For a gas bubble inside a liquid, there is only one interface (gas-liquid), so the pressure difference is ΔP = 2γ/R. But careful: The question says \"球形气泡\" (spherical bubble). In a liquid, a bubble has a single interface between the gas inside and the liquid outside. So the pressure inside the bubble exceeds the pressure in the surrounding liquid by ΔP = 2γ/R. Meanwhile, the surrounding liquid pressure at that depth is approximately atmospheric pressure (since near surface, hydrostatic negligible). So P_inside = P_atm + 2γ/R.\n\nDiameter = 1.0 mm, so radius R = 0.5 mm = 5e-4 m. Surface tension γ = 0.073 N/m. Then 2γ/R = 2 * 0.073 / 5e-4 = 0.146 / 0.0005 = 292 Pa? Let's compute: 0.146 / 0.0005 = 292 Pa. Actually 0.146/5e-4 = 0.146 * 2000 = 292 Pa. So the extra pressure is 292 Pa, not matching exactly 260 or 130 Pa. But wait, perhaps they used diameter instead of radius? If one mistakenly uses 2γ/D = 2*0.073/0.001 = 146 Pa ≈ 130 Pa? Or 4γ/R? For a soap bubble in air, it has two interfaces, so ΔP = 4γ/R. But this is a bubble in water, single interface, so 2γ/R.\n\nLet's check options: A. 260Pa, B. 130Pa, C. 100260Pa, D. 100130Pa. So P_inside = 100,000 Pa + excess pressure. 2γ/R = 292 Pa, not listed. 4γ/R = 4*0.073/5e-4 = 0.292/0.0005 = 584 Pa, not listed. If they used radius = diameter? Actually, if they mistakenly used R = 1 mm, then 2γ/R = 0.146/0.001 = 146 Pa ≈ 130 Pa. That gives excess 130 Pa, so P_inside = 100130 Pa, option D. Option C: 100260 Pa corresponds to excess 260 Pa. 260 Pa could arise from 2γ/R with R=0.5 mm? 2*0.073/0.0005 = 292 Pa, not 260"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 284,
+          "completion_tokens": 700,
+          "total_tokens": 984,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 28
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:33:36.725Z",
+      "updatedAt": "2026-06-30T06:33:36.725Z",
+      "hits": 0
+    },
+    "c429209d69e269f50c22cc8a": {
+      "key": "c429209d69e269f50c22cc8a",
+      "question": {
+        "title": "B3-3-4*如图所示，长为l的轻杆，两端各固定质量分别为m和2m的小球，杆可绕水平光滑固定轴O在竖直面内转动，转轴O距两端分别为https://p.ananas.chaoxing.com/star3/origin/2a4dd900966ac86fe26cdf247ce70e90.pngl和https://p.ananas.chaoxing.com/star3/origin/03874937878da78be329892fbd3bf6b2.png l.轻杆原来静止在竖直位置.今有一质量为m的小球，以水平速度https://p.ananas.chaoxing.com/star3/origin/379aae2e56f02f515166e227ef5927eb.png与杆下端小球m作对心碰撞，碰后以与下端小球一起运动，试求碰撞后轻杆所获得的角速度.https://p.ananas.chaoxing.com/star3/origin/cf4d219d7991866a8d5da553e7468655.png",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "碰撞后轻杆的角速度为https://p.ananas.chaoxing.com/star3/origin/6872a802097ff88fb94391ceabe7916b.png"
+          },
+          {
+            "label": "B",
+            "text": "碰撞后轻杆的角速度为https://p.ananas.chaoxing.com/star3/origin/b0a8d9b9faa1ab08e4eeca8dd57e97f2.png"
+          },
+          {
+            "label": "C",
+            "text": "碰撞后前后系统损失的动能为0"
+          },
+          {
+            "label": "D",
+            "text": "碰撞后前后系统损失的动能为https://p.ananas.chaoxing.com/star3/origin/3b4f9f411972aff1a74499dade8788c8.png"
+          }
+        ],
+        "rawOptions": "碰撞后轻杆的角速度为https://p.ananas.chaoxing.com/star3/origin/6872a802097ff88fb94391ceabe7916b.png\n碰撞后轻杆的角速度为https://p.ananas.chaoxing.com/star3/origin/b0a8d9b9faa1ab08e4eeca8dd57e97f2.png\n碰撞后前后系统损失的动能为0\n碰撞后前后系统损失的动能为https://p.ananas.chaoxing.com/star3/origin/3b4f9f411972aff1a74499dade8788c8.png"
+      },
+      "answer": "A#B",
+      "answerList": [
+        "A",
+        "B"
+      ],
+      "answerText": [
+        "A",
+        "B"
+      ],
+      "type": "single",
+      "explanation": "我们被问到：\"B3-3-4*如图所示，长为l的轻杆，两端各固定质量分别为m和2m的小球，杆可绕水平光滑固定轴O在竖直面内转动，转轴O距两端分别为 l/3 和 2l/3 l.轻杆原来静止在竖直位置.今有一质量为m的小球，以水平速度 v0 与杆下端小球m作对心碰撞，碰后以 v0/2 与下端小球一起运动，试求碰撞后轻杆所获得的角速度.\" 有一些图片方程，但文本中给出了碎片：\"转轴O距两端分别为https://p.ananas.chaoxing.com/star3/origin/2a4dd900966ac86fe26cdf247ce70e90.pngl和https://p.ananas.chaoxing.com/star3/origin/03874937878da78be329892fbd3bf6b2.png l.\" 我们可能必须猜测距离。常见的变形：杆长为l，轴O在距离一端 l/3 处？文本说：“距两端分别为... l和... l”，带有图片。通常，轴在距m端 l/3 处，距2m端 2l/3 处。让我们假设：左端质量m，右端质量2m，轴O在距左端 l/3，距右端 2l/3 处。或者可能是：下",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "149b4ede-9948-4127-909f-9bbb2171fb9a",
+        "object": "chat.completion",
+        "created": 1782801221,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "我们被问到：\"B3-3-4*如图所示，长为l的轻杆，两端各固定质量分别为m和2m的小球，杆可绕水平光滑固定轴O在竖直面内转动，转轴O距两端分别为 l/3 和 2l/3 l.轻杆原来静止在竖直位置.今有一质量为m的小球，以水平速度 v0 与杆下端小球m作对心碰撞，碰后以 v0/2 与下端小球一起运动，试求碰撞后轻杆所获得的角速度.\"\n\n有一些图片方程，但文本中给出了碎片：\"转轴O距两端分别为https://p.ananas.chaoxing.com/star3/origin/2a4dd900966ac86fe26cdf247ce70e90.pngl和https://p.ananas.chaoxing.com/star3/origin/03874937878da78be329892fbd3bf6b2.png l.\" 我们可能必须猜测距离。常见的变形：杆长为l，轴O在距离一端 l/3 处？文本说：“距两端分别为... l和... l”，带有图片。通常，轴在距m端 l/3 处，距2m端 2l/3 处。让我们假设：左端质量m，右端质量2m，轴O在距左端 l/3，距右端 2l/3 处。或者可能是：下端质量m，上端质量2m？题目说“下端小球m”，所以原静止在竖直位置，杆竖直。碰撞发生在下端小球m。所以下端是m，上端是2m。轴O在杆上某处。文本：“转轴O距两端分别为... l和... l”，可能距下端 l/3，距上端 2l/3？或反之？因为碰撞在下端，如果轴靠近下端，则角速度更大？我们需要查看选项。选项A和B给出角速度公式：A: ω = (something) B: ω = (something). 我们需要计算。\n\n已知：\n杆长l，质量忽略。\n下端小球质量m，上端小球质量2m。\n轴O距下端距离？如果距下端l/3，距上端2l/3。那么碰撞前，系统静止在竖直位置。有一质量为m的小球以水平速度v0与下端小球m作对心碰撞，碰后以v0/2与下端小球一起运动。意味着碰撞后，入射小球与下端小球粘在一起，共同速度？说是“碰后以与下端小球一起运动”，可能是它们一起运动，速度为v0/2？读：“碰后以 v0/2 与下端小球一起运动”意思可能是碰后入射小球的速度变为v0/2，与下端小球一起运动，也就是说它们粘在一起，共同速度为v0/2。\n\n因此碰撞瞬间，下端小球m获得速度v0/2（连同入射小球m一起，所以总质量2m？但入射小球质量为m，下端小球质量为m，加起来为2m，但这2m位于下端？但是入射小球是外部小球，它碰撞后粘在下端小球上，所以下端现在总质量为2m？题目说“碰后以与下端小球一起运动”，可能指入射小球与下端"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 602,
+          "completion_tokens": 700,
+          "total_tokens": 1302,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 90
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:33:54.862Z",
+      "updatedAt": "2026-06-30T06:33:54.862Z",
+      "hits": 0
+    },
+    "1eda53fbfcf3cf3291258ebe": {
+      "key": "1eda53fbfcf3cf3291258ebe",
+      "question": {
+        "title": "B3-3-2*质量为m1，m2 (m1 > m2)的两物体，通过一定滑轮用绳相连，已知绳与滑轮间无相对滑动，且定滑轮是半径为R、质量为m3的均质圆盘，忽略轴的摩擦。求:滑轮的角加速度b。(绳轻且不可伸长)https://p.ananas.chaoxing.com/star3/origin/295170919e4992461435617bdc54092f.pnghttps://p.ananas.chaoxing.com/star3/origin/9b5417c98c49c6e1cebb032d56b257d0.png",
+        "type": "multiple",
+        "options": [
+          {
+            "label": "A",
+            "text": "m1物体下降的加速度大小为https://p.ananas.chaoxing.com/star3/origin/2d12a03e0c06b02a7ead88fe6a46aba1.png"
+          },
+          {
+            "label": "B",
+            "text": "m2物体上升的加速度大小为https://p.ananas.chaoxing.com/star3/origin/69e42df0c235b6f4c6438026b518f7cc.png"
+          },
+          {
+            "label": "C",
+            "text": "定滑轮转动角加速度大小为https://p.ananas.chaoxing.com/star3/origin/243c874894075e21ab5b20f844096d9a.png"
+          },
+          {
+            "label": "D",
+            "text": "左右端绳子的拉力大小均为https://p.ananas.chaoxing.com/star3/origin/f276c7c36ac7e947b84bd54370566f89.png"
+          }
+        ],
+        "rawOptions": "m1物体下降的加速度大小为https://p.ananas.chaoxing.com/star3/origin/2d12a03e0c06b02a7ead88fe6a46aba1.png\nm2物体上升的加速度大小为https://p.ananas.chaoxing.com/star3/origin/69e42df0c235b6f4c6438026b518f7cc.png\n定滑轮转动角加速度大小为https://p.ananas.chaoxing.com/star3/origin/243c874894075e21ab5b20f844096d9a.png\n左右端绳子的拉力大小均为https://p.ananas.chaoxing.com/star3/origin/f276c7c36ac7e947b84bd54370566f89.png"
+      },
+      "answer": "B#A#C#D",
+      "answerList": [
+        "B",
+        "A",
+        "C",
+        "D"
+      ],
+      "answerText": [
+        "B",
+        "A",
+        "C",
+        "D"
+      ],
+      "type": "multiple",
+      "explanation": "We are asked: \"滑轮的角加速度b\" (angular acceleration of the pulley). This is a multiple-choice question with options A, B, C, D. The options are image formulas: A. m1物体下降的加速度大小为 (acceleration of m1 downward) some formula B. m2物体上升的加速度大小为 (acceleration of m2 upward) some formula C. 定滑轮转动角加速度大小为 (angular acceleration of pulley) some formula D. 左右端绳子的拉力大小均为 (tension in the rope on both sides) some formula We need to find which of these is correct? Wait: the question is \"求:滑轮的角加速度b\" (Find: angular acceler",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "d1117779-d9f7-4319-b44f-d35e031dda46",
+        "object": "chat.completion",
+        "created": 1782801239,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "We are asked: \"滑轮的角加速度b\" (angular acceleration of the pulley). This is a multiple-choice question with options A, B, C, D. The options are image formulas:\nA. m1物体下降的加速度大小为 (acceleration of m1 downward) some formula\nB. m2物体上升的加速度大小为 (acceleration of m2 upward) some formula\nC. 定滑轮转动角加速度大小为 (angular acceleration of pulley) some formula\nD. 左右端绳子的拉力大小均为 (tension in the rope on both sides) some formula\n\nWe need to find which of these is correct? Wait: the question is \"求:滑轮的角加速度b\" (Find: angular acceleration of the pulley). The options are statements about various quantities. But we are asked to output answer labels as multiple choice, like [\"A\",\"C\"] etc. Is it a multiple-choice question where we pick the correct statements? Possibly the options each present a formula for a quantity. The question might be asking which of these formulas is correct? Or it might be a multiple-choice question where each option is a possible answer for angular acceleration? But A, B, C, D are different quantities. Let's parse the images. Since we can't see images, we need to infer from standard physics problem.\n\nStandard Atwood machine with a massive pulley (uniform disk, mass m3, radius R). m1 > m2. We need to find angular acceleration of pulley. Let's derive.\n\nLet m1 and m2 be masses, m1 > m2. Pulley: mass m3, radius R, moment of inertia I = (1/2) m3 R^2 for uniform disk.\nTensions: T1 on m1 side, T2 on m2 side. No slipping, so a = alpha R, where a is linear acceleration of the masses, alpha is angular acceleration.\nEquations:\nm1 g - T1 = m1 a  (m1 down positive)\nT2 - m2 g = m2 a  (m2 up positive)\nFor pulley: (T1 - T2) R = I alpha = (1/2 m3 R^2) * (a/R) = (1/2) m3 R a  => T1 - T2 = (1/2) m3 a.\n\nAdd the two force equations: m1 g - m2 g - (T1 - T2) = (m1 + m2) a\n=> (m1 - m2) g - (1/2 m3 a) = (m1 + m2) a\n=> (m1 - m2) g = a (m1 + m2 + m3/2)\n=> a = (m1 - m2) g / (m1 + m2 + m3/2)\n\nThen angular acceleration alpha = a/R = (m1 - m2) g / [R (m1 + m2 + m3/2)]. This is the answer for angular acceleration, which is option C presumably.\n\nAlso option A: acceleration of m1 downward is a.\nOption B: acceleration of m2 upward is a.\nOption D: tensions T1 and T2. They are not equal because pulley has mass; T1 ≠ T2. So \"左右端绳子的拉力大小均为...\" implies equal tensions,"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 540,
+          "completion_tokens": 700,
+          "total_tokens": 1240,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 28
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:34:10.219Z",
+      "updatedAt": "2026-06-30T06:34:10.219Z",
+      "hits": 0
+    },
+    "26aa6ab651542ab24b80c6da": {
+      "key": "26aa6ab651542ab24b80c6da",
+      "question": {
+        "title": "CZY4-3-2*质量为2.8g、温度为300K、压强为标准大气压的氮气（摩尔质量为0.028kg/mol），等压膨胀到原来体积的两倍。此过程，说法有误的是（）",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "氮气温度改变300K"
+          },
+          {
+            "label": "B",
+            "text": "氮气所作的功249J"
+          },
+          {
+            "label": "C",
+            "text": "氮气吸收的热量624J"
+          },
+          {
+            "label": "D",
+            "text": "氮气内能的增量624J"
+          }
+        ],
+        "rawOptions": "氮气温度改变300K\n氮气所作的功249J\n氮气吸收的热量624J\n氮气内能的增量624J"
+      },
+      "answer": "A#B#C#D",
+      "answerList": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "answerText": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "type": "single",
+      "explanation": "我们被要求输出JSON，包含字段：answer, answerText, type, confidence, explanation, needsReview。题目是单选题，问题说“说法有误的是”，选项A、B、C、D。我们需要判断哪个是错误的。 首先，理解问题：CZY4-3-2* 质量为2.8g、温度为300K、压强为标准大气压的氮气（摩尔质量为0.028kg/mol），等压膨胀到原来体积的两倍。此过程，说法有误的是哪个选项？选项： A. 氮气温度改变300K B. 氮气所作的功249J C. 氮气吸收的热量624J D. 氮气内能的增量624J 我们需要计算各个物理量，找出错误说法。 已知： 质量 m = 2.8 g = 2.8 × 10^{-3} kg (因为通常SI单位：2.8g = 0.0028 kg) 摩尔质量 M = 0.028 kg/mol = 28 g/mol (所以是氮气N2) 温度 T1 = 300 K 压强 p = 标准大气压 = 1.01325 × 10^5 Pa 等压膨胀到原来体积的两倍：V2 = 2 V1。 首先求摩尔数 n = m / M = 2.8 g ",
+      "confidence": 0.35,
+      "needsReview": true,
+      "status": "review",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "e0d8663d-ab3b-43a4-92f7-279a0389b25e",
+        "object": "chat.completion",
+        "created": 1782801320,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "reasoning_content": "我们被要求输出JSON，包含字段：answer, answerText, type, confidence, explanation, needsReview。题目是单选题，问题说“说法有误的是”，选项A、B、C、D。我们需要判断哪个是错误的。\n\n首先，理解问题：CZY4-3-2* 质量为2.8g、温度为300K、压强为标准大气压的氮气（摩尔质量为0.028kg/mol），等压膨胀到原来体积的两倍。此过程，说法有误的是哪个选项？选项：\nA. 氮气温度改变300K\nB. 氮气所作的功249J\nC. 氮气吸收的热量624J\nD. 氮气内能的增量624J\n\n我们需要计算各个物理量，找出错误说法。\n\n已知：\n质量 m = 2.8 g = 2.8 × 10^{-3} kg (因为通常SI单位：2.8g = 0.0028 kg)\n摩尔质量 M = 0.028 kg/mol = 28 g/mol (所以是氮气N2)\n温度 T1 = 300 K\n压强 p = 标准大气压 = 1.01325 × 10^5 Pa\n等压膨胀到原来体积的两倍：V2 = 2 V1。\n\n首先求摩尔数 n = m / M = 2.8 g / 28 g/mol = 0.1 mol。或者用kg: 0.0028 kg / 0.028 kg/mol = 0.1 mol。所以 n=0.1 mol。\n\n对于等压过程，压强恒定。初始状态：pV1 = nRT1。可得 V1 = nRT1 / p。但我们不需要V1具体值，因为体积加倍，在等压下温度加倍：根据查理定律，等压时 V ∝ T，所以 V2/V1 = T2/T1 = 2，因此 T2 = 2 T1 = 600 K。所以温度改变 ΔT = T2 - T1 = 600 - 300 = 300 K。所以 A 说氮气温度改变300K，这正确。\n\n等压过程气体对外做功：W = p ΔV = p (V2 - V1) = p V1 = nR T1 (因为 p V1 = nRT1) 。计算：n=0.1 mol, R=8.314 J/(mol·K), T1=300 K。W = 0.1 * 8.314 * 300 = 0.1 * 2494.2 = 249.42 J。约249 J。所以 B 说氮气所作的功249J，正确。\n\n等压过程吸收热量：Q = n Cp ΔT。对于双原子分子理想气体（氮气），Cp = (7/2)R。所以 Q = 0.1 * (7/2) * 8.314 * 300 = 0.1 * 3.5 * 8.314 * 300。计算：3.5 * 8.314 = 29.099, 乘以300 = 8729.7, 再乘以0.1 = 872.97 J。大约873 J。但C说氮气吸收的热量624J，这明显不对，873J vs 624"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 301,
+          "completion_tokens": 700,
+          "total_tokens": 1001,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 700
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 301
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:35:30.543Z",
+      "updatedAt": "2026-06-30T06:35:30.543Z",
+      "hits": 0
+    },
+    "6be1246fa436c7fbd3bbc73f": {
+      "key": "6be1246fa436c7fbd3bbc73f",
+      "question": {
+        "title": "CZY4-1-13*有一台冰箱，在工作时其冷冻室的温度可达﹣10℃，室温为25℃，若按理想卡诺循环来计算，此制冷机每消耗1000J的功可以从被冷冻物品中吸热（）J。",
+        "type": "single",
+        "options": [
+          {
+            "label": "A",
+            "text": "1050J"
+          },
+          {
+            "label": "B",
+            "text": "http://p.ananas.chaoxing.com/star3/origin/bfb3ab4638020658daf7e8f05b9e3739.png"
+          },
+          {
+            "label": "C",
+            "text": "7.5kJ"
+          },
+          {
+            "label": "D",
+            "text": "无合适选项"
+          }
+        ],
+        "rawOptions": "1050J\nhttp://p.ananas.chaoxing.com/star3/origin/bfb3ab4638020658daf7e8f05b9e3739.png\n7.5kJ\n无合适选项"
+      },
+      "answer": "C",
+      "answerList": [
+        "C"
+      ],
+      "answerText": [
+        "7.5kJ"
+      ],
+      "type": "single",
+      "explanation": "理想卡诺制冷机的制冷系数 COP = T_c/(T_h - T_c)，其中 T_c = -10℃ = 263.15 K，T_h = 25℃ = 298.15 K，得 COP = 263.15 / 35 ≈ 7.5186。每消耗1000 J功，吸热量 Q = COP × W = 7.5186 × 1000 ≈ 7518.6 J ≈ 7.5 kJ。因此选项C正确。",
+      "confidence": 0.98,
+      "needsReview": false,
+      "status": "ai",
+      "model": "deepseek-v4-pro",
+      "raw": {
+        "id": "a9f94030-9593-4c66-b2d9-ee1187599117",
+        "object": "chat.completion",
+        "created": 1782801335,
+        "model": "deepseek-v4-pro",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": [\"C\"],\n  \"answerText\": \"7.5kJ\",\n  \"type\": \"single\",\n  \"confidence\": 0.98,\n  \"explanation\": \"理想卡诺制冷机的制冷系数 COP = T_c/(T_h - T_c)，其中 T_c = -10℃ = 263.15 K，T_h = 25℃ = 298.15 K，得 COP = 263.15 / 35 ≈ 7.5186。每消耗1000 J功，吸热量 Q = COP × W = 7.5186 × 1000 ≈ 7518.6 J ≈ 7.5 kJ。因此选项C正确。\",\n  \"needsReview\": false\n}",
+              "reasoning_content": "We are asked: \"CZY4-1-13*有一台冰箱，在工作时其冷冻室的温度可达﹣10℃，室温为25℃，若按理想卡诺循环来计算，此制冷机每消耗1000J的功可以从被冷冻物品中吸热（）J。\" Options: A. 1050J, B. [image equation probably a formula or number], C. 7.5kJ, D. 无合适选项\n\nWe need to compute the heat extracted from the cold reservoir per 1000 J of work input for an ideal Carnot refrigerator. The temperatures: cold reservoir T_c = -10°C = 263.15 K, hot reservoir T_h = 25°C = 298.15 K. For a Carnot refrigerator, the coefficient of performance (COP) is COP = T_c / (T_h - T_c) = 263.15 / (298.15 - 263.15) = 263.15 / 35 = 7.51857... So the heat extracted Q_c = COP * W = 7.51857 * 1000 J = 7518.57 J ≈ 7.52 kJ. Option C says \"7.5kJ\", which is close. Option A is 1050J, which is too small. Option B is an image, but likely a number; we don't know exactly, but probably it's the correct formula or answer? The question type is \"single\", so one of A,B,C,D. We need to return the label. The options are labeled A, B, C, D. The correct answer appears to be 7.5kJ, which is option C. The image option B might be a LaTeX formula? The URL: http://p.ananas.chaoxing.com/star3/origin/bfb3ab4638020658daf7e8f05b9e3739.png probably contains the number 7518 or something. But since option C explicitly says \"7.5kJ\", that is clearly the answer. So answer should be [\"C\"].\n\nConfidence high. calculation: COP = T_c/(T_h - T_c) = 263.15/35 ≈ 7.5186, Q = 7518.6 J = 7.5 kJ. So answer is C. No need for needsReview. confidence around 0.98. So output JSON."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 324,
+          "completion_tokens": 664,
+          "total_tokens": 988,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 507
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 324
+        },
+        "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+      },
+      "createdAt": "2026-06-30T06:35:45.847Z",
+      "updatedAt": "2026-06-30T06:35:45.847Z",
+      "hits": 0
+    }
+  }
 }
