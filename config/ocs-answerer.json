@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Local AI Tiku",
+    "homepage": "http://127.0.0.1:8787/health",
+    "url": "http://127.0.0.1:8787/ocs/answer",
+    "method": "post",
+    "contentType": "json",
+    "type": "fetch",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "title": "${title}",
+      "type": "${type}",
+      "options": "${options}"
+    },
+    "handler": "return (res) => {\n  if (!res || res.code !== 1) return [res && res.msg ? res.msg : \"AI service error\", undefined];\n  return [res.question, res.answer];\n}"
+  }
+]
