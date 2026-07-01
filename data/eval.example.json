@@ -1,0 +1,20 @@
+[
+  {
+    "title": "人工智能的英文缩写通常是()。",
+    "type": "single",
+    "options": "A. AI\nB. BI\nC. CI\nD. DI",
+    "answer": "A"
+  },
+  {
+    "title": "若函数 f(x)=x^2，则 f'(x)=()。",
+    "type": "single",
+    "options": "A. x\nB. 2x\nC. x^3\nD. 2",
+    "answer": "B"
+  },
+  {
+    "title": "当液体与固体接触时，通常把接触角作为液体是否润湿固体的界限；接触角小于90度时通常认为()。",
+    "type": "single",
+    "options": "A. 液体润湿固体\nB. 液体完全不润湿固体\nC. 接触角无意义\nD. 固体被气化",
+    "answer": "A"
+  }
+]

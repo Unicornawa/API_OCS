@@ -23,6 +23,11 @@ AI_API_BASE_URL=https://api.openai.com/v1
 AI_API_KEY=你的 key
 AI_MODEL=gpt-4o-mini
 AI_FORCE_ANSWER=true
+AI_THINKING=enabled
+AI_JSON_MODE=true
+AI_ENSEMBLE_COUNT=3
+AI_VERIFY_ANSWER=true
+AI_CACHE_MIN_CONFIDENCE=0.7
 ```
 
 2. 启动服务：
@@ -80,6 +85,18 @@ OCS 传参：
 }
 ```
 
+多选题如果答案是选项字母，例如 `["A","C"]`，服务会返回：
+
+```text
+AC
+```
+
+如果是文本类多答案，服务会继续使用 `#` 分隔，例如：
+
+```text
+答案一#答案二
+```
+
 ## 缓存
 
 缓存文件：
@@ -131,6 +148,26 @@ TIKU_ANSWER_MODE=direct
 
 `AI_FORCE_ANSWER=true` 会要求模型即使不确定也返回最可能的候选答案，并用低 `confidence` 和 `needsReview=true` 标记风险。改成 `false` 后，信息不足的题可能返回空答案。
 
+如果你想让 DeepSeek 保留 thinking，可使用：
+
+```text
+AI_THINKING=enabled
+AI_JSON_MODE=true
+AI_USE_REASONING_CONTENT=false
+```
+
+注意：thinking 模式会把推理写到 `reasoning_content`，最终答案写到 `content`。建议继续保持 `AI_USE_REASONING_CONTENT=false`，避免把推理过程里出现的 A/B/C 误当成最终答案。
+
+准确率优先时建议保留：
+
+```text
+AI_ENSEMBLE_COUNT=3
+AI_VERIFY_ANSWER=true
+AI_CACHE_MIN_CONFIDENCE=0.7
+```
+
+这会让同一道题产生多个候选答案，再做一次复核。它会明显增加请求次数和耗时，但比单次回答更稳。低于缓存置信度阈值的答案不会写入缓存。
+
 `TIKU_REQUEST_TYPE=fetch` 适合 OCS Desktop 和普通浏览器环境；如果你确认当前脚本管理器允许访问本机地址，也可以改成 `GM_xmlhttpRequest` 后重新生成配置。
 
 ## 连接失败排查
@@ -174,6 +211,29 @@ Invoke-RestMethod -Method Post `
   -ContentType "application/json" `
   -Body '{"title":"地理学的对象是什么？","type":"single","options":"A. 地理环境\nB. 地理法则"}'
 ```
+
+## 准确率评测
+
+准备一个带标准答案的数据集，例如：
+
+```json
+[
+  {
+    "title": "若函数 f(x)=x^2，则 f'(x)=()。",
+    "type": "single",
+    "options": "A. x\nB. 2x\nC. x^3\nD. 2",
+    "answer": "B"
+  }
+]
+```
+
+保存为 `data/eval.json`，启动服务后运行：
+
+```powershell
+node scripts/evaluate-dataset.js data/eval.json
+```
+
+脚本会输出正确率，并把明细写入 `data/eval-result-*.json`。
 
 ## 注意
 
