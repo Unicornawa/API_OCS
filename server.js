@@ -1,7 +1,7 @@
 const http = require('http');
 const { loadConfig } = require('./src/env');
 const { CacheStore } = require('./src/cache');
-const { askAi } = require('./src/ai');
+const { askAiOnce } = require('./src/ai');
 const { buildOcsAnswererConfig } = require('./src/ocs-config');
 const {
   createQuestionKey,
@@ -37,6 +37,116 @@ function checkAccess(req, data) {
 
 function getRecordAnswer(record) {
   return formatAnswerForOcs(record.answerList || record.answer);
+}
+
+function candidateKey(answerList) {
+  return formatAnswerForOcs(answerList || []);
+}
+
+function summarizeCandidate(candidate) {
+  return {
+    answer: candidate.answer,
+    confidence: candidate.normalized.confidence,
+    needsReview: candidate.normalized.needsReview,
+    explanation: candidate.normalized.explanation,
+    parseError: candidate.normalized.parseError || '',
+    source: candidate.source,
+  };
+}
+
+function chooseBestCandidate(candidates) {
+  const grouped = new Map();
+  const nonVerifierAnswers = new Set(
+    candidates
+      .filter((candidate) => candidate.source !== 'verifier' && candidate.answer)
+      .map((candidate) => candidate.answer)
+  );
+  for (const candidate of candidates) {
+    if (!candidate.answer) {
+      continue;
+    }
+    const current = grouped.get(candidate.answer) || {
+      answer: candidate.answer,
+      score: 0,
+      votes: 0,
+      confidenceTotal: 0,
+      candidate,
+    };
+    const sourceWeight = candidate.source === 'verifier'
+      ? nonVerifierAnswers.has(candidate.answer) ? 2.5 : 0.8
+      : 1;
+    const parsePenalty = candidate.normalized.parseError ? -0.5 : 0;
+    const confidence = Number(candidate.normalized.confidence || 0);
+    current.score += sourceWeight + confidence + parsePenalty;
+    current.votes += sourceWeight;
+    current.confidenceTotal += confidence;
+    if (confidence > Number(current.candidate.normalized.confidence || 0) || candidate.source === 'verifier') {
+      current.candidate = candidate;
+    }
+    grouped.set(candidate.answer, current);
+  }
+
+  const ranked = Array.from(grouped.values()).sort((a, b) => {
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    return b.confidenceTotal - a.confidenceTotal;
+  });
+  return ranked[0] ? ranked[0].candidate : undefined;
+}
+
+async function askWithCandidates(config, question) {
+  const attempts = [];
+  const errors = [];
+  const count = Math.max(1, config.ensembleCount || 1);
+  for (let index = 0; index < count; index += 1) {
+    const temperature = index === 0 ? config.temperature : Math.max(config.temperature, Math.min(0.35, 0.1 * index));
+    try {
+      const aiResponse = await askAiOnce(config, question, { temperature });
+      const normalized = normalizeAiResult(aiResponse.content, question, {
+        forceAnswer: config.forceAnswer,
+      });
+      attempts.push({
+        source: `attempt-${index + 1}`,
+        aiResponse,
+        normalized,
+        answer: candidateKey(normalized.answerList),
+      });
+    } catch (error) {
+      errors.push(`attempt-${index + 1}: ${error.message || String(error)}`);
+    }
+  }
+
+  const nonEmpty = attempts.filter((candidate) => candidate.answer);
+  if (config.verifyAnswer && nonEmpty.length > 0) {
+    try {
+      const verifierResponse = await askAiOnce(config, question, {
+        temperature: 0,
+        candidates: nonEmpty.map(summarizeCandidate),
+      });
+      const normalized = normalizeAiResult(verifierResponse.content, question, {
+        forceAnswer: config.forceAnswer,
+      });
+      attempts.push({
+        source: 'verifier',
+        aiResponse: verifierResponse,
+        normalized,
+        answer: candidateKey(normalized.answerList),
+      });
+    } catch (error) {
+      errors.push(`verifier: ${error.message || String(error)}`);
+    }
+  }
+
+  const best = chooseBestCandidate(attempts);
+  if (!best) {
+    throw new Error(`AI did not produce any usable answer candidate. ${errors.join('; ')}`);
+  }
+  return {
+    best,
+    candidates: attempts.map(summarizeCandidate),
+    errors,
+  };
 }
 
 function buildFallbackResult(question, error) {
@@ -85,11 +195,11 @@ async function handleAnswer(req, res) {
   }
 
   try {
-    const aiResponse = await askAi(config, question);
-    const normalized = normalizeAiResult(aiResponse.content, question, {
-      forceAnswer: config.forceAnswer,
-    });
+    const result = await askWithCandidates(config, question);
+    const aiResponse = result.best.aiResponse;
+    const normalized = result.best.normalized;
     const answer = formatAnswerForOcs(normalized.answerList);
+    const lowQualityFallback = !aiResponse.content || normalized.parseError || normalized.confidence < config.cacheMinConfidence;
     const record = {
       key,
       question,
@@ -100,15 +210,19 @@ async function handleAnswer(req, res) {
       explanation: normalized.explanation,
       confidence: normalized.confidence,
       needsReview: normalized.needsReview,
-      status: normalized.needsReview ? 'review' : 'ai',
+      status: lowQualityFallback ? 'fallback' : normalized.needsReview ? 'review' : 'ai',
       model: config.model,
-      raw: config.saveAiResults ? aiResponse.raw : undefined,
+      raw: config.saveAiResults ? {
+        selected: aiResponse.raw,
+        candidates: result.candidates,
+        errors: result.errors,
+      } : undefined,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       hits: 0,
     };
 
-    if (config.cacheEnabled) {
+    if (config.cacheEnabled && !lowQualityFallback) {
       cache.set(key, record);
     }
 
@@ -124,6 +238,9 @@ async function handleAnswer(req, res) {
       key,
       status: record.status,
       needsReview: normalized.needsReview,
+      parseError: normalized.parseError || '',
+      candidates: result.candidates,
+      candidateErrors: result.errors,
     });
   } catch (error) {
     if (!config.forceAnswer) {
@@ -154,10 +271,6 @@ async function handleAnswer(req, res) {
       updatedAt: new Date().toISOString(),
       hits: 0,
     };
-
-    if (config.cacheEnabled && fallback.answer) {
-      cache.set(key, record);
-    }
 
     sendJson(res, 200, {
       code: 1,

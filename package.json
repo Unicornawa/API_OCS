@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.js",
     "config": "node scripts/generate-config.js",
-    "test": "node scripts/test-request.js"
+    "test": "node scripts/test-request.js",
+    "eval": "node scripts/evaluate-dataset.js"
   },
   "engines": {
     "node": ">=16.16.0"
