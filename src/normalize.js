@@ -33,11 +33,41 @@ function normalizeOptions(options) {
     const parsed = JSON.parse(raw);
     return normalizeOptions(parsed);
   } catch (_) {
-    return raw
-      .split(/\r?\n|(?=\b[A-H][\.\)\u3001:\uFF1A]\s*)/)
+    return splitOptionText(raw)
       .map((line, index) => normalizeOptionItem(line, index))
       .filter(Boolean);
   }
+}
+
+function splitOptionText(raw) {
+  const text = String(raw || '').trim();
+  if (!text) {
+    return [];
+  }
+
+  const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  if (lines.length > 1) {
+    return lines;
+  }
+
+  const matches = [];
+  const markerPattern = /(^|[\s\r\n])([A-Ha-h])[\.\)\u3001:\uFF1A]\s*/g;
+  let match;
+  while ((match = markerPattern.exec(text)) !== null) {
+    matches.push({
+      start: match.index + match[1].length,
+      label: match[2].toUpperCase(),
+    });
+  }
+
+  if (matches.length <= 1) {
+    return lines;
+  }
+
+  return matches.map((item, index) => {
+    const next = matches[index + 1];
+    return text.slice(item.start, next ? next.start : text.length).trim();
+  });
 }
 
 function normalizeOptionItem(item, index) {
@@ -118,6 +148,29 @@ function splitCompactOptionLabels(value, validLabels) {
   return [];
 }
 
+function getJudgeAnswerFromText(value) {
+  const text = cleanText(value).toLowerCase();
+  if (!text) {
+    return '';
+  }
+  if (/错误|不正确|不对|错|false|no|否/.test(text)) {
+    return FALSE_TEXT;
+  }
+  if (/正确|对|true|yes|是/.test(text)) {
+    return TRUE_TEXT;
+  }
+  return '';
+}
+
+function getJudgeAnswerFromOption(question, label) {
+  const upper = cleanText(label).toUpperCase();
+  const option = (question.options || []).find((item) => item.label === upper);
+  if (!option) {
+    return '';
+  }
+  return getJudgeAnswerFromText(option.text) || cleanText(option.text);
+}
+
 function normalizeAnswerListForQuestion(answerList, question) {
   const validLabels = (question.options || []).map((item) => item.label).filter(Boolean);
   if (validLabels.length === 0) {
@@ -193,34 +246,57 @@ function pickSingleFromAnalysis(optionAnalysis, fallbackList) {
 function enforceAnswerShape(answerList, question, optionAnalysis) {
   const kind = inferQuestionKind(question);
   const validLabels = (question.options || []).map((item) => item.label).filter(Boolean);
-  let list = Array.from(new Set(answerList));
+  const originalList = Array.from(new Set(answerList));
+  let list = originalList.slice();
+
+  if (kind === 'judge') {
+    for (const item of originalList) {
+      const directAnswer = getJudgeAnswerFromText(item);
+      if (directAnswer) {
+        return { kind, answerList: [directAnswer] };
+      }
+      const optionAnswer = getJudgeAnswerFromOption(question, item);
+      if (optionAnswer) {
+        return { kind, answerList: [optionAnswer] };
+      }
+    }
+
+    const positive = optionAnalysis
+      .filter((item) => item.correct)
+      .sort((a, b) => b.confidence - a.confidence);
+    for (const item of positive) {
+      const optionAnswer = getJudgeAnswerFromOption(question, item.label);
+      if (optionAnswer) {
+        return { kind, answerList: [optionAnswer] };
+      }
+    }
+
+    const joinedAnswer = getJudgeAnswerFromText(originalList.join(' '));
+    if (joinedAnswer) {
+      return { kind, answerList: [joinedAnswer] };
+    }
+
+    return { kind, answerList: originalList.slice(0, 1) };
+  }
 
   if (validLabels.length > 0) {
     list = list.filter((item) => validLabels.includes(String(item).toUpperCase()));
   }
 
   if (kind === 'single') {
+    if (validLabels.length === 0 && list.every((item) => /^[A-H]$/i.test(String(item)))) {
+      return { kind, answerList: [] };
+    }
     return {
       kind,
       answerList: list.length > 1 ? pickSingleFromAnalysis(optionAnalysis, list) : list.slice(0, 1),
     };
   }
 
-  if (kind === 'judge') {
-    if (validLabels.length > 0 && list.length > 0) {
-      return { kind, answerList: list.slice(0, 1) };
-    }
-    const joined = answerList.join(' ');
-    if (/(\u9519\u8BEF|\u9519|false|no|\u5426)/i.test(joined)) {
-      return { kind, answerList: [FALSE_TEXT] };
-    }
-    if (/(\u6B63\u786E|\u5BF9|true|yes|\u662F)/i.test(joined)) {
-      return { kind, answerList: [TRUE_TEXT] };
-    }
-    return { kind, answerList: answerList.slice(0, 1) };
-  }
-
   if (kind === 'multiple') {
+    if (validLabels.length === 0 && list.every((item) => /^[A-H]$/i.test(String(item)))) {
+      return { kind, answerList: [] };
+    }
     if (list.length > 0) {
       return { kind, answerList: list };
     }
@@ -360,6 +436,7 @@ module.exports = {
   normalizeAiResult,
   normalizeAnswerListForQuestion,
   normalizeOptions,
+  splitOptionText,
   normalizeQuestionPayload,
   enforceAnswerShape,
 };

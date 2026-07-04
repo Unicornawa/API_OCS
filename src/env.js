@@ -43,6 +43,14 @@ function numberValue(value, fallback) {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
+function listValue(value, fallback) {
+  const raw = value === undefined || value === '' ? fallback : value;
+  return String(raw || '')
+    .split(/[,\s|]+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function loadConfig() {
   const fileEnv = parseEnvFile(path.join(rootDir, '.env'));
   const env = { ...fileEnv, ...process.env };
@@ -70,6 +78,8 @@ function loadConfig() {
     useReasoningContent: boolValue(env.AI_USE_REASONING_CONTENT, false),
     ensembleCount: Math.max(1, Math.min(5, numberValue(env.AI_ENSEMBLE_COUNT, 1))),
     verifyAnswer: boolValue(env.AI_VERIFY_ANSWER, true),
+    verifyDomains: listValue(env.AI_VERIFY_DOMAINS, ''),
+    verifyMinConfidence: Math.max(0, Math.min(1, numberValue(env.AI_VERIFY_MIN_CONFIDENCE, 0))),
     cacheMinConfidence: Math.max(0, Math.min(1, numberValue(env.AI_CACHE_MIN_CONFIDENCE, 0.7))),
     cacheEnabled: boolValue(env.TIKU_CACHE_ENABLED, true),
     cacheOnlyConfirmed: boolValue(env.TIKU_CACHE_ONLY_CONFIRMED, false),

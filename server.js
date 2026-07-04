@@ -2,9 +2,11 @@ const http = require('http');
 const { loadConfig } = require('./src/env');
 const { CacheStore } = require('./src/cache');
 const { askAiOnce } = require('./src/ai');
+const { detectDomain, inferQuestionKind } = require('./src/domain');
 const { buildOcsAnswererConfig } = require('./src/ocs-config');
 const {
   createQuestionKey,
+  enforceAnswerShape,
   formatAnswerForOcs,
   normalizeAiResult,
   normalizeQuestionPayload,
@@ -35,8 +37,17 @@ function checkAccess(req, data) {
   return getRequestToken(req, data) === config.accessToken;
 }
 
-function getRecordAnswer(record) {
-  return formatAnswerForOcs(record.answerList || record.answer);
+function getRecordAnswerInfo(record) {
+  let answerList = Array.isArray(record.answerList)
+    ? record.answerList
+    : [record.answer].filter(Boolean);
+  if (record.question && inferQuestionKind(record.question) === 'judge') {
+    answerList = enforceAnswerShape(answerList, record.question, []).answerList;
+  }
+  return {
+    answer: formatAnswerForOcs(answerList),
+    answerList,
+  };
 }
 
 function candidateKey(answerList) {
@@ -99,29 +110,47 @@ async function askWithCandidates(config, question) {
   const attempts = [];
   const errors = [];
   const count = Math.max(1, config.ensembleCount || 1);
-  for (let index = 0; index < count; index += 1) {
+  const domain = detectDomain(question);
+  const attemptJobs = Array.from({ length: count }, async (_, index) => {
     const temperature = index === 0 ? config.temperature : Math.max(config.temperature, Math.min(0.35, 0.1 * index));
     try {
-      const aiResponse = await askAiOnce(config, question, { temperature });
+      const aiResponse = await askAiOnce(config, question, { temperature, domain });
       const normalized = normalizeAiResult(aiResponse.content, question, {
         forceAnswer: config.forceAnswer,
       });
-      attempts.push({
+      return {
         source: `attempt-${index + 1}`,
         aiResponse,
         normalized,
         answer: candidateKey(normalized.answerList),
-      });
+      };
     } catch (error) {
-      errors.push(`attempt-${index + 1}: ${error.message || String(error)}`);
+      return {
+        error: `attempt-${index + 1}: ${error.message || String(error)}`,
+      };
+    }
+  });
+
+  const settledAttempts = await Promise.all(attemptJobs);
+  for (const candidate of settledAttempts) {
+    if (candidate.error) {
+      errors.push(candidate.error);
+    } else {
+      attempts.push(candidate);
     }
   }
 
   const nonEmpty = attempts.filter((candidate) => candidate.answer);
-  if (config.verifyAnswer && nonEmpty.length > 0) {
+  const bestBeforeVerify = chooseBestCandidate(nonEmpty);
+  const shouldVerifyByDomain = (config.verifyDomains || []).includes(domain);
+  const shouldVerifyByConfidence = config.verifyMinConfidence > 0 &&
+    bestBeforeVerify &&
+    Number(bestBeforeVerify.normalized.confidence || 0) < config.verifyMinConfidence;
+  if ((config.verifyAnswer || shouldVerifyByDomain || shouldVerifyByConfidence) && nonEmpty.length > 0) {
     try {
       const verifierResponse = await askAiOnce(config, question, {
         temperature: 0,
+        domain,
         candidates: nonEmpty.map(summarizeCandidate),
       });
       const normalized = normalizeAiResult(verifierResponse.content, question, {
@@ -146,6 +175,7 @@ async function askWithCandidates(config, question) {
     best,
     candidates: attempts.map(summarizeCandidate),
     errors,
+    domain,
   };
 }
 
@@ -177,14 +207,15 @@ async function handleAnswer(req, res) {
 
   const key = createQuestionKey(question);
   const existing = config.cacheEnabled ? cache.get(key) : undefined;
-  const cachedAnswer = existing ? getRecordAnswer(existing) : '';
+  const cached = existing ? getRecordAnswerInfo(existing) : undefined;
+  const cachedAnswer = cached ? cached.answer : '';
   if (existing && cachedAnswer && (!config.cacheOnlyConfirmed || existing.status === 'confirmed')) {
     cache.touch(key);
     sendJson(res, 200, {
       code: 1,
       question: existing.question.title,
       answer: cachedAnswer,
-      answerList: existing.answerList || [existing.answer].filter(Boolean),
+      answerList: cached.answerList,
       explanation: existing.explanation || '',
       confidence: existing.confidence || 0,
       cached: true,
@@ -238,6 +269,7 @@ async function handleAnswer(req, res) {
       key,
       status: record.status,
       needsReview: normalized.needsReview,
+      domain: result.domain,
       parseError: normalized.parseError || '',
       candidates: result.candidates,
       candidateErrors: result.errors,

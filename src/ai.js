@@ -89,6 +89,19 @@ function getDomainRules(domain) {
   return [...common, ...(rules[domain] || rules.general)];
 }
 
+function getHardQuestionRules(domain) {
+  if (!['math', 'physics'].includes(domain)) {
+    return [];
+  }
+  return [
+    'This is a high-risk calculation/concept question. Work out the solution internally before choosing any option.',
+    'Check signs, units, dimensions, boundary cases, and negative wording before the final answer.',
+    'For numeric questions, compute the target quantity first, then match it to the closest equivalent option.',
+    'For formula questions, verify that each symbol and condition matches the question, not just a familiar-looking formula.',
+    'Keep the final JSON compact: brief explanation only, no step-by-step derivation.',
+  ];
+}
+
 function buildPrompt(question, config, opts = {}) {
   const domain = opts.domain || detectDomain(question);
   const kind = inferQuestionKind(question);
@@ -122,6 +135,7 @@ function buildPrompt(question, config, opts = {}) {
     'For fill-in or short-answer questions, return concise text.',
     ...forceAnswerRules,
     ...getDomainRules(domain),
+    ...getHardQuestionRules(domain),
     `The adapter inferred question kind as: ${kind}. Obey this unless the given question type clearly contradicts it.`,
     'For choice questions, optionAnalysis must contain every provided option label exactly once.',
     'For single-choice questions, exactly one optionAnalysis item should be correct=true.',

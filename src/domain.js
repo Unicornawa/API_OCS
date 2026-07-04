@@ -13,6 +13,16 @@ function countMatches(text, patterns) {
   return patterns.reduce((count, pattern) => count + (pattern.test(text) ? 1 : 0), 0);
 }
 
+function hasJudgeOptions(options) {
+  if (!Array.isArray(options) || options.length !== 2) {
+    return false;
+  }
+  const optionText = options.map((item) => lowerText(item.text)).join(' ');
+  const hasTrue = /正确|对|true|yes|是/.test(optionText);
+  const hasFalse = /错误|不正确|不对|错|false|no|否/.test(optionText);
+  return hasTrue && hasFalse;
+}
+
 function detectDomain(question) {
   const title = lowerText(question.cleanedTitle || question.title);
   const options = lowerText((question.options || []).map((item) => item.text).join(' '));
@@ -39,12 +49,21 @@ function detectDomain(question) {
     /[∫∑√∞≤≥≠≈πθαβγ]/,
   ]);
 
+  const strongPhysics = /物理|力学|牛顿|动量|冲量|角速度|角加速度|重力|弹力|压强|浮力|张力|动能|势能|机械能|电场|磁场|电势|电压|电流|电阻|电容|电荷|安培|欧姆|波长|频率|振幅|折射|反射|干涉|衍射|热量|内能|熵|接触角/.test(text);
+  const strongMath = /数学|函数|方程|不等式|数列|集合|导数|微分|积分|极限|连续|收敛|发散|矩阵|行列式|向量|特征值|线性|概率|随机|期望|方差|统计|分布|几何|三角|正弦|余弦|椭圆|抛物线/.test(text);
+
   const definitionScore = countMatches(text, [
     /定义|概念|含义|是指|称为|又称|所谓/,
     /特征|特点|性质|原则|作用|功能|组成|内容|分类/,
     /下列.*正确|下列.*错误|关于.*说法|属于|不属于/,
   ]);
 
+  if (physicsScore >= 1 && strongPhysics && physicsScore >= mathScore) {
+    return 'physics';
+  }
+  if (mathScore >= 1 && strongMath && mathScore >= physicsScore) {
+    return 'math';
+  }
   if (physicsScore >= Math.max(2, mathScore + 1, definitionScore)) {
     return 'physics';
   }
@@ -63,6 +82,9 @@ function inferQuestionKind(question) {
   const text = `${type} ${title}`;
   const options = question.options || [];
 
+  if (hasJudgeOptions(options)) {
+    return 'judge';
+  }
   if (/多选|多项|复选|不定项|multiple|multi-select|checkbox|哪些|哪几/.test(text)) {
     return 'multiple';
   }
@@ -79,12 +101,6 @@ function inferQuestionKind(question) {
     return 'single';
   }
 
-  if (options.length === 2) {
-    const optionText = options.map((item) => lowerText(item.text)).join(' ');
-    if (/正确|错误|对|错|true|false/.test(optionText)) {
-      return 'judge';
-    }
-  }
   if (options.length > 0) {
     return 'single';
   }
@@ -93,6 +109,7 @@ function inferQuestionKind(question) {
 
 module.exports = {
   detectDomain,
+  hasJudgeOptions,
   inferQuestionKind,
   stripQuestionPrefix,
 };
